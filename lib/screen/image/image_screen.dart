@@ -51,6 +51,9 @@ class ImageScreen extends StatelessWidget {
                   alignment: Alignment.topLeft,
                 ),
               ),
+              SizedBox(height: 30,),
+              SizedBox(width: 150, height: 150,
+                  child: Image.asset('assets/company_device.png'))
 
             ],
           ),

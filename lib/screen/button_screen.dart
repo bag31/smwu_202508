@@ -3,6 +3,7 @@ import 'package:flutter_projects/screen/column/column_practice_screen.dart';
 import 'package:flutter_projects/screen/column/column_screen.dart';
 import 'package:flutter_projects/screen/container/container_practice_screen.dart';
 import 'package:flutter_projects/screen/container/container_screen.dart';
+import 'package:flutter_projects/screen/image/image_practice_screen.dart';
 import 'package:flutter_projects/screen/image/image_screen.dart';
 import 'package:flutter_projects/screen/row/column_row_practice_screen.dart';
 import 'package:flutter_projects/screen/row/row_practice_screen.dart';
@@ -125,7 +126,25 @@ class ButtonScreen extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return ImageScreen();
               },),);
-            }, child: Text("Image Screen"))
+            }, child: Text("Image Screen")),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ImagePracticeScreen();
+              },),);
+            }, child: Text("Image Practice Screen")),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ImagePracticeScreen();
+              },),);
+            }, child: Text("Image Practice Screen")),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ImagePracticeScreen();
+              },),);
+            }, child: Text("Image Practice Screen"))
           ],
         ),
       ),
