@@ -1,0 +1,61 @@
+import 'package:flutter/material.dart';
+
+class ImageScreen extends StatelessWidget {
+  const ImageScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Image")),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            children: [
+              Container(
+                color: Colors.grey,
+                width: 300,
+                height: 300,
+                child: Image.network(
+                  "https://sailing-it-images.s3.ap-northeast-2.amazonaws.com/company/company_device.png",
+                ),
+              ),
+              SizedBox(height: 30,),
+              Container(
+                color: Colors.grey,
+                width: 300,
+                height: 300,
+                child: Image.network(
+                  "https://sailing-it-images.s3.ap-northeast-2.amazonaws.com/company/company_device.png",
+                  fit: BoxFit.fitHeight,
+                ),
+              ),
+              SizedBox(height: 30,),
+              Container(
+                color: Colors.grey,
+                width: 300,
+                height: 300,
+                child: Image.network(
+                  "https://sailing-it-images.s3.ap-northeast-2.amazonaws.com/company/company_device.png",
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+              SizedBox(height: 30,),
+              Container(
+                color: Colors.grey,
+                width: 300,
+                height: 300,
+                child: Image.network(
+                  "https://sailing-it-images.s3.ap-northeast-2.amazonaws.com/company/company_device.png",
+                  fit: BoxFit.cover, // 가로 세로 상관없이 주어진 영역에 비율 맞춰서 확대해서 맞추라는 것
+                  alignment: Alignment.topLeft,
+                ),
+              ),
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

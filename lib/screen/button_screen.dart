@@ -3,8 +3,12 @@ import 'package:flutter_projects/screen/column/column_practice_screen.dart';
 import 'package:flutter_projects/screen/column/column_screen.dart';
 import 'package:flutter_projects/screen/container/container_practice_screen.dart';
 import 'package:flutter_projects/screen/container/container_screen.dart';
+import 'package:flutter_projects/screen/image/image_screen.dart';
+import 'package:flutter_projects/screen/row/column_row_practice_screen.dart';
 import 'package:flutter_projects/screen/row/row_practice_screen.dart';
 import 'package:flutter_projects/screen/row/row_screen.dart';
+import 'package:flutter_projects/screen/text/text_practice_screen.dart';
+import 'package:flutter_projects/screen/text/text_screen.dart';
 
 class ButtonScreen extends StatelessWidget {
   const ButtonScreen({super.key});
@@ -91,7 +95,37 @@ class ButtonScreen extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return RowPracticeScreen();
               },),);
-            }, child: Text("Row Practice"))
+            }, child: Text("Row Practice")),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ColumnRowPracticeScreen();
+              },),);
+            }, child: Text("Column Row Practice")),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return RowPracticeScreen();
+              },),);
+            }, child: Text("Row Practice")),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return TextScreen();
+              },),);
+            }, child: Text("Text Screen")),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return TextPracticeScreen();
+              },),);
+            }, child: Text("Text Practice Screen")),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ImageScreen();
+              },),);
+            }, child: Text("Image Screen"))
           ],
         ),
       ),
