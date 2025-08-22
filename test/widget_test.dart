@@ -12,25 +12,32 @@ import 'package:flutter_projects/main.dart';
 
 import 'collections.dart';
 import 'conditional.dart';
+import 'for_loop.dart';
 import 'method.dart';
 
 void main() {
-  Method();
-
-  var collection = Collections();
-  collection.listAdd();
-  collection.listRemove();
-  collection.mapController();
-  collection.setController();
-  collection.practice();
-
+  // 20250821
+  // Method();
+  //
+  // var collection = Collections();
+  // collection.listAdd();
+  // collection.listRemove();
+  // collection.mapController();
+  // collection.setController();
+  // collection.practice();
+  //
+  // // var conditional1 = Conditional();
+  // // conditional1.simpleSwitch;
+  //
   // var conditional1 = Conditional();
   // conditional1.simpleSwitch;
+  // var ifScore = conditional1.practice_if(99);
+  // var ifSwitch = conditional1.practice_switch(10);
+  // print('if score $ifScore | switch score $ifSwitch');
 
-  var conditional1 = Conditional();
-  conditional1.simpleSwitch;
-  var ifScore = conditional1.practice_if(99);
-  var ifSwitch = conditional1.practice_switch(10);
-  print('if score $ifScore | switch score $ifSwitch');
+  // 20250822
+  ForLoop();
+
+
 }
 
