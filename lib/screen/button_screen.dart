@@ -9,6 +9,7 @@ import 'package:flutter_projects/screen/row/column_row_practice_screen.dart';
 import 'package:flutter_projects/screen/row/row_practice_screen.dart';
 import 'package:flutter_projects/screen/row/row_screen.dart';
 import 'package:flutter_projects/screen/scrollview/listview_builder_screen.dart';
+import 'package:flutter_projects/screen/scrollview/listview_practice_screen.dart';
 import 'package:flutter_projects/screen/scrollview/listview_screen.dart';
 import 'package:flutter_projects/screen/scrollview/scrollView_screen.dart';
 import 'package:flutter_projects/screen/stack/stack_practice_screen.dart';
@@ -239,7 +240,7 @@ class ButtonScreen extends StatelessWidget {
               ),
               button(context, ListviewScreen(), "ListView"),
               button(context, ListviewBuilderScreen(), "ListView Builder"),
-
+              button(context, ListviewPracticeScreen(), "ListView practice"),
             ],
           ),
         ),

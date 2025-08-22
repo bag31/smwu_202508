@@ -8,9 +8,12 @@ class ListviewBuilderScreen extends StatelessWidget {
     List<String> dataList = ["A", "B", "C", "D", "E", "F", "G"];
     return Scaffold(
       appBar: AppBar(title: Text("ListView Builder")),
-      body: ListView.builder(itemCount: dataList.length, itemBuilder: (context, index) {
-        return Text(dataList[index]);
-      }),
+      body: ListView.builder(
+        itemCount: dataList.length,
+        itemBuilder: (context, index) {
+          return Text(dataList[index]);
+        },
+      ),
     );
   }
 }
