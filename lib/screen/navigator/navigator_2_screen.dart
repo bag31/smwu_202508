@@ -44,6 +44,7 @@ class _Navigator2ScreenState extends State<Navigator2Screen> {
             },
             child: Text("Pop"),
           ),
+
         ],
       ),
     );

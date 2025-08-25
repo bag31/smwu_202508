@@ -18,6 +18,7 @@ import 'package:flutter_projects/screen/stack/stack_screen.dart';
 import 'package:flutter_projects/screen/stateful/stateful_screen.dart';
 import 'package:flutter_projects/screen/text/text_practice_screen.dart';
 import 'package:flutter_projects/screen/text/text_screen.dart';
+import 'package:flutter_projects/screen/todo/todo_screen.dart';
 
 class ButtonScreen extends StatelessWidget {
   const ButtonScreen({super.key});
@@ -250,6 +251,8 @@ class ButtonScreen extends StatelessWidget {
               button(context, StatefulScreen(), "Stateful"),
               button_space(),
               button(context, NavigatorScreen(), "Navigator"),
+              button_space(),
+              button(context, TodoScreen(), "Todo"),
             ],
           ),
         ),
@@ -260,7 +263,7 @@ class ButtonScreen extends StatelessWidget {
   //
   Widget button(BuildContext context, Widget child, String name) {
     return ElevatedButton(
-      onPressed: () {
+      onPressed: () { // ctrl+space : () {} 고르면 눌렀을 때 어디로 이동할 지 작성 가능
         Navigator.push(
           context,
           MaterialPageRoute(
