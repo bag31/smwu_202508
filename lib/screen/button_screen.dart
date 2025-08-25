@@ -5,6 +5,7 @@ import 'package:flutter_projects/screen/container/container_practice_screen.dart
 import 'package:flutter_projects/screen/container/container_screen.dart';
 import 'package:flutter_projects/screen/image/image_practice_screen.dart';
 import 'package:flutter_projects/screen/image/image_screen.dart';
+import 'package:flutter_projects/screen/navigator/navigator_screen.dart';
 import 'package:flutter_projects/screen/row/column_row_practice_screen.dart';
 import 'package:flutter_projects/screen/row/row_practice_screen.dart';
 import 'package:flutter_projects/screen/row/row_screen.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_projects/screen/scrollview/listview_screen.dart';
 import 'package:flutter_projects/screen/scrollview/scrollView_screen.dart';
 import 'package:flutter_projects/screen/stack/stack_practice_screen.dart';
 import 'package:flutter_projects/screen/stack/stack_screen.dart';
+import 'package:flutter_projects/screen/stateful/stateful_screen.dart';
 import 'package:flutter_projects/screen/text/text_practice_screen.dart';
 import 'package:flutter_projects/screen/text/text_screen.dart';
 
@@ -244,6 +246,10 @@ class ButtonScreen extends StatelessWidget {
               button(context, ListviewBuilderScreen(), "ListView Builder"),
               button_space(),
               button(context, ListviewPracticeScreen(), "ListView practice"),
+              button_space(),
+              button(context, StatefulScreen(), "Stateful"),
+              button_space(),
+              button(context, NavigatorScreen(), "Navigator"),
             ],
           ),
         ),
