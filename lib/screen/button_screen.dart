@@ -238,8 +238,11 @@ class ButtonScreen extends StatelessWidget {
                 },
                 child: Text("ScrollView"),
               ),
+              button_space(),
               button(context, ListviewScreen(), "ListView"),
+              button_space(),
               button(context, ListviewBuilderScreen(), "ListView Builder"),
+              button_space(),
               button(context, ListviewPracticeScreen(), "ListView practice"),
             ],
           ),
@@ -249,7 +252,7 @@ class ButtonScreen extends StatelessWidget {
   }
 
   //
-  Widget button(BuildContext context, Widget child, String name){
+  Widget button(BuildContext context, Widget child, String name) {
     return ElevatedButton(
       onPressed: () {
         Navigator.push(
@@ -263,6 +266,9 @@ class ButtonScreen extends StatelessWidget {
       },
       child: Text(name),
     );
+  }
 
+  Widget button_space() {
+    return SizedBox(height: 10);
   }
 }
