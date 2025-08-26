@@ -1,17 +1,36 @@
-class JsonModel {
-  String id;
-  int number;
+import 'dart:math';
+import 'dart:ui';
 
+class JsonModel {
   // int age;
   // double weight;
   // String name;
-  Info info;
+  String id;
+  int number;
+  Info?
+  info; // nullable로 안하면 json['info'] == null ? null : Info.fromJson(json['info']), 에러 남.
+  List<Framework> frameworks;
 
-  JsonModel(this.id, this.number, this.info);
+  JsonModel(this.id, this.number, this.info, this.frameworks);
+
+  /// (json['framework'] as Iterable)
+
+  factory JsonModel.fromJson(Map<String, dynamic> json) {
+    return JsonModel(
+      json['id'] ?? '',
+      json['number'] ?? 0,
+      json['info'] == null ? null : Info.fromJson(json['info']),
+      json['framework'] == null
+          ? []
+          : (json['framework'] as Iterable)
+                .map((e) => Framework.fromJson(e))
+                .toList(),
+    );
+  }
 
   @override
   String toString() {
-    return 'JsonModel{id: $id, number: $number, info: $info}';
+    return 'JsonModel{id: $id, number: $number, info: $info, frameworks: $frameworks}';
   }
 }
 
@@ -27,14 +46,15 @@ class Info {
     return Info(
       json['age'] ?? 0,
       json['wegiht'] ?? 0.0,
-      json['name' ?? ''],
-      json['description'] == null // if 문 한 줄로 정리
+      json['name'] ?? '',
+      json['description'] ==
+              null // if 문 한 줄로 정리
           ? null
           : Description.fromJson(json['description']), // 삼항연산자
     );
   }
 
-  @override
+  @override // toString 숏컷으로 만듦. alt+insert
   String toString() {
     return 'Info{age: $age, weight: $weight, name: $name, description: $description}';
   }
@@ -65,6 +85,19 @@ class Description {
   }
 }
 
-// class Framework {
-//
-// }
+class Framework {
+  String email;
+  String platform;
+
+  Framework(this.email, this.platform);
+
+  factory Framework.fromJson(Map<String, dynamic> json) {
+    return Framework(json['email'] ?? '', json['platform'] ?? '');
+  }
+
+  @override
+  String toString() {
+    return 'Framework{email: $email, platform: $platform}';
+  }
+}
+
