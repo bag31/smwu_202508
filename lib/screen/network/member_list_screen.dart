@@ -46,15 +46,23 @@ class _MemberListScreenState extends State<MemberListScreen> {
           ),
           Expanded(
             child: ListView.builder(
+              padding: EdgeInsets.all(16),
               itemBuilder: (context, index) {
-                return Column(
-                  children: [Text("이메일 : ${memberList[index].email}"), Text("설명 : ${memberList[index].description}")],
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    /// 왼쪽 정렬
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("이메일 : ${memberList[index].email}"),
+                      Text("설명 : ${memberList[index].description}"),
+                    ],
+                  ),
                 );
               },
               itemCount: memberList.length,
             ),
           ),
-
 
           // ElevatedButton(
           //   onPressed: () {
