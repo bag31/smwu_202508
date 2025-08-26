@@ -14,6 +14,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+  dio: ^5.9.0 # 플러터에서 네트워크로 유명항 외부 api
 
 dev_dependencies:
   flutter_test:

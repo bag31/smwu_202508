@@ -30,6 +30,7 @@ class _TodoScreenState extends State<TodoScreen> {
                   onPressed: () {
                     /// todoList에 새로운 TodoModel 추가
                     print(controller.text);
+                    // ==============
                     todoList.add(TodoModel(controller.text, false)); // me, answer
 
                     // TodoModel todoModel = TodoModel(controller.text, false); // answer
