@@ -19,7 +19,7 @@ class _FutureScreenState extends State<FutureScreen> {
             onPressed: () async {
               print('시작 전');
               // await Future.delayed(Duration(milliseconds: 1000), () {
-              //   // async 이썽야 await 쓸 수 있음
+              //   // async 있어야 await 쓸 수 있음
               //   print('Delay 끝');
               // });
               String value = await futureBasic();

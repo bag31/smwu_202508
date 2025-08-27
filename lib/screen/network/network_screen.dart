@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_projects/screen/network/member_list_screen.dart';
+import 'package:flutter_projects/screen/network/member_register_screen.dart';
 
 class NetworkScreen extends StatelessWidget {
   const NetworkScreen({super.key});
@@ -23,6 +24,27 @@ class NetworkScreen extends StatelessWidget {
             },
             child: Text("회원 목록 조회"),
           ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return MemberRegisterScreen();
+                  },
+                ),
+              ).then((value) {
+                /// value가 null이 아니고
+                /// value가 bool 타입이고
+                /// value가 true인 경우
+                if(value != null && value is bool && value){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('등록 성공'))); // 아래에 띄워주는 거
+                }
+              },);
+            },
+            child: Text("회원 등록"),
+          ),
+
         ],
       ),
     );
