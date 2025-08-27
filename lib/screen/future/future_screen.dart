@@ -18,16 +18,25 @@ class _FutureScreenState extends State<FutureScreen> {
           ElevatedButton(
             onPressed: () async {
               print('시작 전');
-              await Future.delayed(Duration(milliseconds: 1000), () {
-                // async 이썽야 await 쓸 수 있음
-                print('Delay 끝');
-              });
-              print('시작 후');
+              // await Future.delayed(Duration(milliseconds: 1000), () {
+              //   // async 이썽야 await 쓸 수 있음
+              //   print('Delay 끝');
+              // });
+              String value = await futureBasic();
+              print('시작 후 : $value');
             },
             child: Text("Delay"),
           ),
         ],
       ),
     );
+  }
+
+  /// Future를 리턴하는 경우 Future를 리턴하거나
+  /// Future를 리턴하지 않는다면 아니면 반드시 async 힐요
+  /// Future를 리턴하는 함수는 then을 쓸 수 있다.
+  Future<String> futureBasic() async {
+    await Future.delayed(Duration(milliseconds: 1500));
+    return "result";
   }
 }
