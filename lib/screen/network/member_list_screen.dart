@@ -24,12 +24,13 @@ class _MemberListScreenState extends State<MemberListScreen> {
   List<Member> memberList = [];
   bool loading = false;
 
+
   // https://online-lecture-data.s3.ap-northeast-2.amazonaws.com/data.json
 
   @override
   Widget build(BuildContext context) {
-    if(loading) {
-      return Scaffold(body: CircularProgressIndicator(),);
+    if (loading) {
+      return Scaffold(body: CircularProgressIndicator());
     }
     return Scaffold(
       appBar: AppBar(title: Text("멤버 조회")),
@@ -67,9 +68,16 @@ class _MemberListScreenState extends State<MemberListScreen> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return MemberEditScreen(email: memberList[index].email); // 페이지 이동 시 이메일 전달함
-                    },));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return MemberEditScreen(
+                            email: memberList[index].email,
+                          ); // 페이지 이동 시 이메일 전달함
+                        },
+                      ),
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
