@@ -36,7 +36,9 @@ class _MemberListScreenState extends State<MemberListScreen> {
               dio.get("/api/v1/member/all").then((value) {
                 // if(value.data is Iterable) {}
                 memberList = (value.data as Iterable).map((e) {
-                  return Member.fromJson(e);
+                  return Member.fromJson(
+                    e,
+                  ); // Iterable인 value(여러 개 Json 데이터가 있음)를 map이 하나씩 꺼내서 e에 넣음. 그리고 각각을 Member.fromJson 꼴을 적용해서 Member 객체 리스트로 만든다.
                 }).toList();
                 setState(() {});
                 print('memberList : $memberList');

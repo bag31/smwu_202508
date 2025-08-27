@@ -3,6 +3,7 @@ import 'package:flutter_projects/screen/column/column_practice_screen.dart';
 import 'package:flutter_projects/screen/column/column_screen.dart';
 import 'package:flutter_projects/screen/container/container_practice_screen.dart';
 import 'package:flutter_projects/screen/container/container_screen.dart';
+import 'package:flutter_projects/screen/future/future_screen.dart';
 import 'package:flutter_projects/screen/image/image_practice_screen.dart';
 import 'package:flutter_projects/screen/image/image_screen.dart';
 import 'package:flutter_projects/screen/navigator/navigator_screen.dart';
@@ -256,7 +257,8 @@ class ButtonScreen extends StatelessWidget {
               button(context, TodoScreen(), "Todo"),
               button_space(),
               button(context, NetworkScreen(), "Network"),
-
+              button_space(),
+              button(context, FutureScreen(), "Future"),
             ],
           ),
         ),
