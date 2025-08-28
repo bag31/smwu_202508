@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/screen/news/article.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});
@@ -22,6 +23,9 @@ class _NewsScreenState extends State<NewsScreen> {
   /// POST는 인터넷 주소창에서 호출 불가능
   bool loading = true;
   int page = 1;
+  List<Article> articles = [];
+  int totalResults = 0;
+  ScrollController scrollController = ScrollController();
 
   Future<void> getData() async {
     if (!loading) {
@@ -44,13 +48,37 @@ class _NewsScreenState extends State<NewsScreen> {
     );
 
     var response = await Dio().get(uri.toString());
+    totalResults = response.data["totalResults"];
 
+    List<Article> tempList = (response.data["articles"] as Iterable).map((e) {
+      return Article.fromJson(e);
+    }).toList();
+
+    /// 1. ArticleModel 생성
+    /// 2. List<ArticleModel> articles 생성
+
+    articles.addAll(tempList);
+
+    print(articles);
     loading = false;
     setState(() {});
   }
+
   @override
-  void initState() { // await를 여기에 쓰면 오류
+  void initState() {
+    // await를 여기에 쓰면 오류
     getData();
+    scrollController.addListener(() {
+      if (scrollController.position.atEdge) {
+        bool isBottom =
+            scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent;
+        if (isBottom && totalResults > articles.length && !loading) {
+          page++;
+          getData();
+        }
+      }
+    });
     super.initState();
   }
 
@@ -59,38 +87,54 @@ class _NewsScreenState extends State<NewsScreen> {
     return Scaffold(
       appBar: AppBar(title: Text("News")),
       body: ListView.builder(
+        controller: scrollController,
         padding: EdgeInsets.all(16), // 보통 짝수로 씀. 16, 24 등 비슷비슷하다.
-        itemBuilder: (context, index) {
+        itemBuilder: (context, index) { // 여기에서 변수 선언
+          var model = articles[index];
           return Padding(
             padding: EdgeInsets.only(bottom: 24),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
 
               children: [
-                Container(width: 130, height: 130, color: Colors.grey),
+                Container(
+                  width: 150,
+                  height: 150,
+                  color: Colors.grey,
+                  child: model.urlToImage.isEmpty
+                      ? null
+                      : Image.network(model.urlToImage, fit: BoxFit.cover),
+                ),
                 SizedBox(width: 16),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "타이틀",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                Expanded(
+                  // 화면 오버플로우 에러 해결. '주어진 영역'을 전부 채우기
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        model.title,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
                       ),
-                      maxLines: 1,
-                    ),
-                    Text("부제", style: TextStyle(fontSize: 17), maxLines: 2),
-                    Text("언론사명", style: TextStyle(fontSize: 14)),
-                    Text("날짜", style: TextStyle(fontSize: 14)),
-                  ],
+                      Text(
+                        model.description,
+                        style: TextStyle(fontSize: 17),
+                        maxLines: 2,
+                      ),
+                      Text(model.author, style: TextStyle(fontSize: 14)),
+                      Text(model.publishedAt, style: TextStyle(fontSize: 14)),
+                    ],
+                  ),
                 ),
               ],
             ),
           );
         },
-        itemCount: 10,
+        itemCount: articles.length,
       ),
     );
   }

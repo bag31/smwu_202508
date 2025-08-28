@@ -15,6 +15,7 @@ dependencies:
 
   cupertino_icons: ^1.0.8
   dio: ^5.9.0 # 플러터에서 네트워크로 유명항 외부 api
+  get: ^4.7.2
 
 dev_dependencies:
   flutter_test:
