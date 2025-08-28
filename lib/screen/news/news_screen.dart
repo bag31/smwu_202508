@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class NewsScreen extends StatefulWidget {
@@ -8,43 +9,88 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
+  /// GET 방식
+  /// https://newsapi.org/v2/everything?q=tesla&from=2025-07-28&sortBy=publishedAt&apiKey=API_KEY
+  /// https://newsapi.org => 도메인
+  /// /v2/everything => path 도메인부터 ? 전까지
+  /// q=tesla&from=2025-07-28&sortBy=publishedAt&apiKey=API_KEY
+  /// url 자체에 연결해서 쓰는 거
+  /// ? 이후 => query
+  ///
+  /// GET과 POST의 차이
+  /// GET은 인터넷 주소창에 검색해도 호출 가능
+  /// POST는 인터넷 주소창에서 호출 불가능
+  bool loading = true;
+  int page = 1;
+
+  Future<void> getData() async {
+    if (!loading) {
+      loading = true;
+      setState(() {});
+    }
+
+    Uri uri = Uri(
+      scheme: "https",
+      host: "newsapi.org",
+      path: "/v2/everything",
+      queryParameters: {
+        "q": "google",
+        "from": "2025-08-01",
+        "sortBy": "publishedAt",
+        "apiKey": "584dca6a0f434dbe9c36b19e67fb5a50",
+        "pageSize": "20", // 전부 String으로 바꿔줘야 한다.
+        "page": page.toString(),
+      },
+    );
+
+    var response = await Dio().get(uri.toString());
+
+    loading = false;
+    setState(() {});
+  }
+  @override
+  void initState() { // await를 여기에 쓰면 오류
+    getData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("NEWS")),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return Column(
+      appBar: AppBar(title: Text("News")),
+      body: ListView.builder(
+        padding: EdgeInsets.all(16), // 보통 짝수로 씀. 16, 24 등 비슷비슷하다.
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.only(bottom: 24),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+
+              children: [
+                Container(width: 130, height: 130, color: Colors.grey),
+                SizedBox(width: 16),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Container(color: Colors.grey, width: 100, height: 100),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "제목",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                              maxLines: 2,
-                            ),
-                            Text("기자", maxLines: 2),
-                            Text("언론사"),
-                            Text("날짜"),
-                          ],
-                        ),
-                      ],
+                    Text(
+                      "타이틀",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
                     ),
-                    SizedBox(height: 10),
+                    Text("부제", style: TextStyle(fontSize: 17), maxLines: 2),
+                    Text("언론사명", style: TextStyle(fontSize: 14)),
+                    Text("날짜", style: TextStyle(fontSize: 14)),
                   ],
-                );
-              },
-              itemCount: 10,
+                ),
+              ],
             ),
-          ),
-        ],
+          );
+        },
+        itemCount: 10,
       ),
     );
   }
