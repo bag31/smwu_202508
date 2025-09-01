@@ -7,6 +7,9 @@ class MyController extends GetxController {
   /// to는 변수명
   static MyController get to => Get.find<MyController>();
 
+  /// GetX 상태관리의 2가지 요소
+  /// 1. Rx로 선언된 변수
+  ///
   RxInt count = 0.obs;
 
   void countUp() {

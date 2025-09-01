@@ -17,6 +17,12 @@ class _GetxScreenState extends State<GetxScreen> {
     return Scaffold(appBar: AppBar(title: Text("Getx"),),
       body: Column(
         children: [
+
+
+          /// GetX 상태관리의 2가지 요소
+          /// 1. Rx로 선언된 변수
+          /// 2. Obx로 감쌀 것.
+          /// 알아서 자동 업데이트된다.
           Obx(() {
             return Text(MyController.to.count.value.toString());
           },),
